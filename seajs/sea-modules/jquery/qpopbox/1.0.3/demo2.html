@@ -1,0 +1,63 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+<head>
+
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">  
+
+<link rel="stylesheet" href="jquery.qpopbox.css"   media="all"    type="text/css" />
+<link rel="stylesheet" href="bootstrap.css"   media="all"    type="text/css" />
+<script type="text/javascript"  src="jquery-1.10.2.js" ></script>
+<script type="text/javascript"  src="jquery.qpopbox.js?curversion=1" ></script>
+
+
+<script>
+	$(document).ready(
+		function()
+		{
+			$(".content").qpopbox(
+				{
+					messagebox:$("#messagebox"),
+					save:function()
+					{
+						alert("save");
+					},
+					close:function()
+					{
+						alert("close");
+					}
+				}
+			);
+			$(".content").qpopbox("show");
+		}
+	);
+</script>
+
+
+</head>
+
+
+<body>
+	
+	<div class="content" style="width:800px;height:600px;background:#ffffff">
+		i am div
+	</div>
+	
+	
+	<div id="messagebox" >
+				 <div class="panel panel-default">
+						  <div class="panel-heading">
+							<h3 class="panel-title">Panel title</h3>
+						  </div>
+						  <div class="panel-body">
+							Panel content
+						  </div>
+						  <div class="panel-footer">
+							<button type="button" class="btn btn-primary">Save changes</button>
+							<button type="button" class="btn btn-default" data-dismiss="myModal">Close</button>
+						  </div>
+				 </div>
+	</div>
+	
+
+</body>
+</html>

@@ -14,7 +14,7 @@
 	$(document).ready(
 		function()
 		{
-			$(document.body).qpopbox(
+			$(window).qpopbox(
 				{
 					messagebox:$("#messagebox"),
 					save:function()
@@ -27,7 +27,7 @@
 					}
 				}
 			);
-			$(document.body).qpopbox("show");
+			$(window).qpopbox("show");
 		}
 	);
 </script>
@@ -309,6 +309,7 @@
 	<div>
 			<button id="btn1">test</button>
 	</div>
-</body>
 
+	
+</body>
 </html>

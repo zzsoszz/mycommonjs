@@ -105,8 +105,8 @@
 			        	this.options.messagebox.css(
 								{
 									'position':'absolute',
-									'top':( target.offset().top+((target.height()-this.options.messagebox.height())/2) ) +"px",
-									'left':( target.offset().left+((target.width()-this.options.messagebox.width())/2) ) +"px"
+									'top':( target.offset().top+(target.height()/2)-(this.options.messagebox.height()/2) ) +"px",
+									'left':( target.offset().left+(target.width()/2)-(this.options.messagebox.width()/2) ) +"px"
 								}
 						);
 			        }
