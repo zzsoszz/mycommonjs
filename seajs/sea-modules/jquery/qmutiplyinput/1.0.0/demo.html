@@ -1,0 +1,118 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+<head>
+
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">  
+
+<link rel="stylesheet" href="jquery.qmutiplyinput.css"   media="all"    type="text/css" />
+<link rel="stylesheet" href="bootstrap.css"   media="all"    type="text/css" />
+<script type="text/javascript"  src="jquery-1.10.2.js" ></script>
+<script type="text/javascript"  src="jquery.qmutiplyinput.js" ></script>
+
+
+<script>
+	$(document).ready(
+		function()
+		{
+			
+			$("#containerinput").qmutiplyinput({
+				value:"高手,你好",
+				name:"otherguest",
+				resultele:$("#result"),
+				additionClass:"{required:true,minlength:2}",
+				onAdd:function(item)
+				{
+					//alert($(item).val());
+					alert("111");
+				},
+				onRemove:function(item)
+				{
+					//alert($(item).val());
+					alert("222");
+				}
+			});
+			
+			
+			$("#containerinput").qmutiplyinput({
+				value:"高手,你好222",
+				name:"otherguest",
+				resultele:$("#result"),
+				additionClass:"{required:true,minlength:2}",
+				onAdd:function(item)
+				{
+					alert("333");
+					//alert($(item).val());
+				},
+				onRemove:function(item)
+				{
+					alert("444");
+					//alert($(item).val());
+				}
+			});
+			
+			$("#btnAddFirst").click(
+				function()
+				{
+					$("#containerinput").qmutiplyinput("addfirst");
+				}
+			);
+			
+			$("#btnAddLast").click(
+				function()
+				{
+					$("#containerinput").qmutiplyinput("addlast");
+				}
+			);
+			
+			$("#btnRemoveFirst").click(
+				function()
+				{
+					$("#containerinput").qmutiplyinput("removefirst");
+				}
+			);
+			
+			$("#btnRemoveLast").click(
+				function()
+				{
+					$("#containerinput").qmutiplyinput("removelast");
+				}
+			);
+			
+			$("#change").click(
+				function()
+				{
+					$("#containerinput").qmutiplyinput("change",$("#count").val());
+				}
+			);
+			
+		}
+	);
+</script>
+
+
+</head>
+
+
+<body>
+	
+	<div id="containerinput">
+		
+	</div>
+	
+	
+	<input  id="result" type="text"  value=""/>
+	<div>
+		<input  id="btnAddFirst" type="button"  value="btnAddFirst"/>
+		<input  id="btnAddLast" type="button"  value="btnAddLast"/>
+		<input  id="btnRemoveFirst" type="button"  value="btnRemoveFirst"/>
+		<input  id="btnRemoveLast" type="button"   value="btnRemoveLast"/>
+		
+		<br>
+		<input  id="count" type="input"  value="5"/>
+		<input  id="change" type="button"  value="change"/>
+	</div>
+	
+	
+</body>
+
+</html>

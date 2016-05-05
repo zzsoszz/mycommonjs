@@ -1,0 +1,7 @@
+{
+    "family": "sesame",
+    "name": "jquery-ui",
+    "version": "1.10.4",
+    "description": "jQuery UI with Draggable, Resizable and Slide Effect",
+    "keywords": ["jquery-ui"]
+}

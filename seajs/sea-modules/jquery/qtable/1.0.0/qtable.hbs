@@ -1,0 +1,36 @@
+<table class="table table-hover table-bordered">
+	<thead>
+		<tr>
+			
+			  {{#each gridheader}}
+			 	 <th>
+					{title}
+				</th>
+			  {{/each}}
+		</tr>
+	</thead>
+	<tbody>
+		{{#each gridrow}}
+		    <tr>
+		        {{#each this}}
+		            <td>{{this}}</td>
+		        {{/each}}
+		    </tr>
+		{{/each}}
+	</tbody>
+</table>
+
+<!-- 翻页  -->
+<div class="qpager pageset  centered pagination-small">
+							<div>
+								<button class="prev">&lt;&lt;</button>
+							</div>
+							<div class="qpagerui">
+							</div>
+							<div>
+								<button class="next">&gt;&gt;</button>
+								<input class="page"   />
+								<button class="turn">跳转</button>
+							</div>
+</div>
+						

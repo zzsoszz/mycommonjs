@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>谷歌农历</title>
+  <script src="jquery-latest.js"></script>
+  <script src="calendar-converter.js"></script>
+  <script src="ydate.js"></script>
+  <script>
+  
+  
+  
+	
+	$(document).ready(
+		function()
+		{
+			freshCalendar(new Date().getFullYear(),new Date().getMonth()+1);
+			$(".year").add(".month").change(
+				function()
+				{
+					freshCalendar($(".year").val(),$(".month").val());
+				}
+			);
+		}
+	);
+	
+	function freshCalendar(year,month)
+	{
+		$(".year").val(year);
+		$(".month").val(month);
+		try{
+				var mydate=new YDate();
+				mydate.setFullYear(year);
+				mydate.setMonth(month);
+				mydate.setDate(1);
+				var cc  =new CalendarConverter();
+				var start=mydate.getWeek()==0?7:mydate.getWeek();
+				var days=mydate.getDays();
+				
+				//alert(start);
+				//alert(days);
+				var boardsize=(start+days)>35?42:35;
+				var  cad=new Array(boardsize);
+				mydate.setDate(mydate.getDate()-start+1);
+				for(var i=1;i<=boardsize;i++)
+				{
+					cad[i]=cc.solar2lunar(mydate.toDate());
+					if(i>=start && i<(start+days) )
+					{
+						cad[i].visiable=true;
+					}else
+					{
+						cad[i].visiable=false;
+					}
+					mydate.setDate(mydate.getDate()+1);
+				}
+			
+				var k=1;
+				$("#cad").empty();
+				
+				var headrow=$('<tr><th>一</th><th>二</th><th>三</th><th>四</th><th>五</th><th class="op-calendar-new-table-weekend">六</th><th class="op-calendar-new-table-weekend">日</th></tr>');
+				$("#cad").append(headrow);
+				var row=$("<tr>");
+				for(var i=1;i<=boardsize;i++)
+				{
+					var mytd=$("<td>");
+					var mydiv=$("<div>");
+					var mya=$("<a href='#'>");
+					var span_daynumber=$("<span>").text(cad[k].sDay).addClass("daynumber");
+					
+					var span_almanac=$("<span>").addClass("almanac");
+					if(cad[k].solarFestival)
+					{
+						span_almanac.text(cad[k].solarFestival);
+					}else{
+						span_almanac.text(cad[k].lunarDay);
+					}
+					var span_sign=$("<span>").addClass("sign");
+					mya.append(span_daynumber).append(span_almanac).append(span_sign);
+					mydiv.append(mya);
+					//alert(cad[k].visiable);
+					if(cad[k].visiable==false)
+					{
+						mydiv.addClass("nosee");
+					}
+					mytd.append(mydiv);
+					k++;
+					row.append(mytd);
+					if(i%7==0)
+					{
+						$("#cad").append(row);
+						row=$("<tr>");
+					}
+				}
+			}catch(ex)
+			{
+				alert(ex);
+			}
+	}
+	
+	
+	
+	
+	
+(
+function ($)
+{
+	var  defaultoptions = {
+              selector      : this.selector,
+			  format   : "yyyy-mm-dd" 
+    };
+	
+	$.fn.qcalendar = function(params)
+	{
+			var options = $.extend( {}, defaultoptions, params );
+			this.each(
+				function()
+				{
+					$(this).data("qblockdata",new QCalendar($(this),options ));
+				}
+			);
+			return this;
+	};
+	function QCalendar(showtarget, options)
+	{
+		
+	}
+}
+)(jQuery);
+	
+	
+  </script>
+  <style>
+    table{
+		border:1px solid #5AF;
+		width:370px;
+	}
+	
+	td,th{
+		width: 50px;
+		height: 55px;
+		border:1px solid #5AF;
+	}
+	div{
+		position: relative;
+		width: 100%;
+		height:100%;
+		zoom: 1;
+	}
+	a{
+		display:block;
+		width: 100%;
+		height:100%;
+		
+		text-align: center;
+		line-height: 1;
+		white-space: nowrap;
+	}
+	.daynumber{
+		display: block;
+		height:25px;
+		width: 100%;
+		
+	}
+	.almanac{
+		display: block;
+		height:15px;
+		width: 100%;
+	}
+	.sign{
+		display: block;
+		height:15px;
+		width: 100%;
+	}
+	.nosee{
+		background:#336699;
+	}
+  </style>
+</head>
+
+<body>
+
+<input id="mydate"  />
+
+
+<div class="calendar" >
+	<div class="select-box">
+		 <select class="year">
+		  <option value ="2010">2010</option>
+		  <option value ="2011">2011</option>
+		  <option value ="2012">2012</option>
+		  <option value ="2013">2013</option>
+		  <option value ="2014">2014</option>
+		  <option value ="2015">2015</option>
+		  <option value ="2016">2016</option>
+		  <option value ="2017">2017</option>
+		  <option value ="2018">2018</option>
+		  <option value ="2019">2019</option>
+		  <option value ="2020">2020</option>
+		  <option value ="2021">2021</option>
+		  <option value ="2022">2022</option>
+		  <option value ="2023">2023</option>
+		  <option value ="2024">2024</option>
+		  <option value ="2025">2025</option>
+		</select>
+		<select class="month">
+		  <option value ="1">01</option>
+		  <option value ="2">02</option>
+		  <option value ="3">03</option>
+		  <option value ="4">04</option>
+		  <option value ="5">05</option>
+		  <option value ="6">06</option>
+		  <option value ="7">07</option>
+		  <option value ="8">08</option>
+		  <option value ="9">09</option>
+		  <option value ="10">10</option>
+		  <option value ="11">11</option>
+		  <option value ="12">12</option>
+		</select>
+	<div>
+	<div class="show-box">
+		<table id="cad">
+			
+		</table>
+	<div>
+</div>
+
+</body>
+</html>
